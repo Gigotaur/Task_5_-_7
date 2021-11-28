@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Locale.setDefault(Locale.ROOT);
-        double s = readNum("введите параметр размера: ");
+        int s = readNum("введите параметр размера: ");
 
         if (checkNum(s)) {
             System.out.println("loading figure...");
@@ -20,36 +20,54 @@ public class Main {
 
     }
 
-    private static double readNum(String text) {
+    private static int readNum(String text) {
         System.out.println(text);
         Scanner input = new Scanner(System.in);
-        double num;
-        num = input.nextDouble();
+        int num;
+        num = input.nextInt();
         return num;
 
     }
 
-    private static void figure(double s) {
+    private static void figure(int s) {
 
         double sign = -1;
-        double space =(s-1)/2;
-        for (double stIv = 0; stIv !=s; stIv++) {
+        double space = (s-1)/2;
 
-            for (double ndIv = 0; ndIv != space; ndIv++ ){
+        for (double stIv = 0; stIv <= s/2; stIv++) {
+            for (double ndIv = 0; ndIv < space; ndIv++ ){
                 System.out.print(" ");
             }
 
-            sign +=2;
+            sign += 2;
 
-            for (double rdIv =0; rdIv !=sign; rdIv ++){
+            for (double rdIv = 0; rdIv < sign; rdIv++){
                 System.out.print("*");
             }
             System.out.println();
-            space --;
+
+            space--;
+        }
+
+        space += 2;
+
+        for (double stIv = s/2; stIv>0; stIv--) {
+            for (double ndIv = 0; ndIv < space; ndIv++ ){
+                System.out.print(" ");
+            }
+
+            sign -= 2;
+
+            for (double rdIv=0; rdIv<sign; rdIv++){
+                System.out.print("*");
+            }
+            System.out.println();
+
+            space++;
         }
     }
 
-    private static boolean checkNum ( double s){
+    private static boolean checkNum ( int s){
         return (s % 2 != 0);
     }
 
